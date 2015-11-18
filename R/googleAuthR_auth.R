@@ -82,7 +82,7 @@ Authentication <- R6::R6Class(
 #'   Google account. This deletes the \code{.httr-oauth} file in current working
 #'   directory.
 #' @param verbose Increase feedback messages of the function.   
-#'   
+#' @param auth_file Where the auth token is saved. Default ".httr-oauth"   
 #'
 #' @return an OAuth token object, specifically a
 #'   \code{\link[=Token-class]{Token2.0}}, invisibly
@@ -90,14 +90,17 @@ Authentication <- R6::R6Class(
 #' @export
 gar_auth <- function(token = NULL,
                      new_user = FALSE,
-                     verbose = TRUE) {
+                     verbose = TRUE,
+                     auth_file = getOption("googleAuthR.default_auth_name")) {
+  
+  if(is.null(auth_file)) auth_file <- ".httr-oauth"
   
   if(new_user) {
     Authentication$set("public", "token", NULL, overwrite=TRUE)
     Authentication$set("public", "websites", data.frame(siteURL="None", permissionLevel="N/A"), overwrite=TRUE)
-    if(file.exists(".httr-oauth")){
-      if(verbose) message("Removing old credentials ...")
-      file.remove(".httr-oauth")     
+    if(file.exists(auth_file)){
+      if(verbose) message("Removing old credentials from ", auth_file, "...")
+      file.remove(auth_file)     
     }
     
   }
@@ -184,7 +187,9 @@ get_google_token <- function(shiny_return_token=NULL) {
 #' @return logical
 #'
 #' @keywords internal
-token_exists <- function(verbose = TRUE) {
+token_exists <- function(verbose = TRUE, auth_file = getOption("googleAuthR.default_auth_name")) {
+  
+  if(is.null(auth_file)) auth_file <- ".httr-oauth"
   
   token <- Authentication$public_fields$token
   
@@ -192,13 +197,13 @@ token_exists <- function(verbose = TRUE) {
     if(verbose) {
       message("No authorization yet in this session!")
       
-      if(file.exists(".httr-oauth")) {
-        message(paste("NOTE: a .httr-oauth file exists in current working",
-                      "directory.\n Run scr_auth() to use the",
-                      "credentials cached in .httr-oauth for this session."))
+      if(file.exists(auth_file)) {
+        message(paste("NOTE: a ", auth_file," file exists in current working",
+                      "directory.\n Run gar_auth() to use the",
+                      "credentials cached in it for this session."))
       } else {
-        message(paste("No .httr-oauth file exists in current working directory.",
-                      "Run scr_auth() to provide credentials."))
+        message(paste("No ",auth_file," file exists in current working directory.",
+                      "Run gar_auth() to provide credentials."))
       }
       
     }

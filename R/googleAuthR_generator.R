@@ -14,6 +14,10 @@
 #' You don't need to supply access_token for OAuth2 requests in pars_args, 
 #'   this is dealt with in gar_auth()
 #'   
+#' If you're running multiple authentication tokens, 
+#'   need to set option("googleAuthR.default_auth_name" = "auth_token_name")
+#'   before this function is invoked.
+#'   
 #' @examples 
 #' \dontrun{
 #' library(googleAuthR)
@@ -210,7 +214,7 @@ retryRequest <- function(f){
 #' 
 #' @keywords internal
 #' @family data fetching functions
-checkTokenAPI <- function(shiny_access_token=NULL, verbose=F){
+checkTokenAPI <- function(shiny_access_token=NULL, verbose=FALSE){
   
   if(is.null(shiny_access_token)){
     ## local token
