@@ -1,4 +1,4 @@
-#' googleAuthR: Easy Authentication with Google OAuth2 APIs
+a#' googleAuthR: Easy Authentication with Google OAuth2 APIs
 #' 
 #' Get a startup guide by viewing the vignette: \code{vignette("googleAuthR")}
 #' 
@@ -36,10 +36,10 @@
 #'   \item \code{googleAuthR.rawResponse = FALSE}
 #'   \item \code{googleAuthR.httr_oauth_cache = TRUE}
 #'   \item \code{googleAuthR.verbose = 3}
-#'   \item \code{googleAuthR.client_id = "201908948134-rm1ij8ursrfcbkv9koc0aqver84b04r7.apps.googleusercontent.com"}
-#'   \item \code{googleAuthR.client_secret = "nksRJZ5K3nm9FUWsAtBoBArz"}
-#'   \item \code{googleAuthR.webapp.client_id = "201908948134-cjjs89cffh3k429vi7943ftpk3jg36ed.apps.googleusercontent.com"}
-#'   \item \code{googleAuthR.webapp.client_secret = "mE7rHl0-iNtzyI1MQia-mg1o"}
+#'   \item \code{googleAuthR.client_id = Sys.getenv("CLIENT_ID")}
+#'   \item \code{googleAuthR.client_secret = Sys.getenv("CLIENT_ID_SECRET")}
+#'   \item \code{googleAuthR.webapp.client_id = Sys.getenv("CLIENT_ID")}
+#'   \item \code{googleAuthR.webapp.client_secret = Sys.getenv("CLIENT_ID_SECRET")}
 #'   \item \code{googleAuthR.webapp.port = 1221}
 #'   \item \code{googleAuthR.jsonlite.simplifyVector = TRUE}
 #'   \item \code{googleAuthR.scopes.selected = c("https://www.googleapis.com/auth/webmasters",
