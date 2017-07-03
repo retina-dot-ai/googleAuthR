@@ -3,10 +3,10 @@ library(googleAuthR)
 options(googleAuthR.httr_oauth_cache = "httr-oauth.rds")
 options(googleAuthR.scopes.selected = c("https://www.googleapis.com/auth/webmasters",
                                         "https://www.googleapis.com/auth/urlshortener"))
-options(googleAuthR.client_id = "201908948134-rm1ij8ursrfcbkv9koc0aqver84b04r7.apps.googleusercontent.com")
-options(googleAuthR.client_secret = "nksRJZ5K3nm9FUWsAtBoBArz")
-options(googleAuthR.webapp.client_id = "201908948134-cjjs89cffh3k429vi7943ftpk3jg36ed.apps.googleusercontent.com")
-options(googleAuthR.webapp.client_secret = "mE7rHl0-iNtzyI1MQia-mg1o")
+options(googleAuthR.client_id = Sys.getenv("CLIENT_ID"))
+options(googleAuthR.client_secret = Sys.getenv("CLIENT_SECRET"))
+options(googleAuthR.webapp.client_id = Sys.getenv("WEB_CLIENT_ID"))
+options(googleAuthR.webapp.client_secret = Sys.getenv("WEB_CLIENT_SECRET"))
 
 context("Auth")
 
